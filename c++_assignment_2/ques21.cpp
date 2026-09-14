@@ -50,7 +50,7 @@ int main(){
     Patient p2(1002,"Raj Patel");
     Patient p3;
     cout << "\n===== DYNAMIC PATIENT ARRAY =====" << endl;
-    // 2. Create dynamic array of 4 Patient objects Default constructor will be called 4 times
+
     Patient* patients = new Patient[4];
     cout << "\n===== DISPLAYING DYNAMIC PATIENTS =====" << endl;
     // 3. Display all 4 patients

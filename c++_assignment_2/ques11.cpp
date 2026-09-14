@@ -1,6 +1,7 @@
 #include<iostream>
 #include<iomanip>
 #include<string>
+
 using namespace std;
 class Product{
     private:
@@ -8,20 +9,13 @@ class Product{
         string name;
         double price;
         int quantity;
-
     public:
         void acceptDetails(){
             cout<<"Enter the details as follow product id, name, price,quantity: "<<endl;
             cin>>productId>>name>>price>>quantity;
         }
-
         void displayDetails() const{
-            cout<<left
-                <<setw(12)<<productId
-                <<setw(20)<<name
-                <<setw(12)<<fixed<<setprecision(2)<<price
-                <<setw(10)<<quantity
-                <<setw(15)<<totalValue()<<endl;
+            cout<<productId<<"    "<<name<<"    "<<price<<"   "<<quantity<<"   "<<totalValue()<<endl;
         }
         double totalValue() const{
             return price * quantity;
@@ -35,34 +29,31 @@ class Product{
 };
 
 int main(){
-    Product products[5];
+    int n;
+    cout<<"Enter the no of product:"<<endl;
+    cin>>n;
+    Product products[n];
     cout<<" =========== Enter product details ============ "<<endl;
-    for(int i=0;i<5;i++){
+    for(int i=0;i<n;i++){
         products[i].acceptDetails();
         cout<<endl;
     }
     cout<<" ===== INVENTORY DETAILS ========"<<endl;
 
-    cout << left
-         << setw(12) << "ID"
-         << setw(20) << "Name"
-         << setw(12) << "Price"
-         << setw(10) << "Qty"
-         << setw(15) << "Total Value"
+    cout<<"  "<< "ID"<<"   "<< "Name"<<"  "<< "Price"<<"    "<< "Qty"<<"    "<< "Total Value"
          << "Status" << endl;
 
     cout << string(80, '-') << endl;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < n; i++) {
         products[i].displayDetails();
     }
 
     // 4. Find product with highest total value
     int highestIndex = 0;
 
-    for (int i = 1; i < 5; i++) {
-        if (products[i].totalValue() >
-            products[highestIndex].totalValue()) {
+    for (int i = 1; i < n; i++) {
+        if (products[i].totalValue() >products[highestIndex].totalValue()) {
             highestIndex = i;
         }
     }
@@ -84,7 +75,7 @@ int main(){
 
     bool found = false;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < n; i++) {
         if (products[i].isLowStock(threshold)) {
 
             if (found)
